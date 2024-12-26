@@ -9,21 +9,20 @@
   <input type="checkbox" id="chk" aria-hidden="true">
 
   <div class="signup">
-    <form>
+    <form (ngSubmit)="onSignUp()">
       <label for="chk" aria-hidden="true">Sign up</label>
-      <input type="text" name="txt" placeholder="User name" [(ngModel)]="signupObj.userName">
-      <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email">
-      <input type="password" name="pswd" placeholder="Password" [(ngModel)]="signupObj.password">
-      <button (click)="onSignUp()">Sign up</button>
+      <input type="text" name="txt" placeholder="User name" [(ngModel)]="signupObj.userName" required/>
+      <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email" required/>
+      <input type="password" name="pswd" placeholder="Password" [(ngModel)]="signupObj.password" required/>
+      <button>Sign up</button>
     </form>
   </div>
-
   <div class="login">
-    <form>
+    <form (ngSubmit)="onLogin()">
       <label for="chk" aria-hidden="true">Login</label>
       <input type="email" name="user name" placeholder="User name" [(ngModel)]="loginObj.userName">
       <input type="password" name="pssword" placeholder="Password" [(ngModel)]="loginObj.password">
-      <button (click)="onLogin()">Login</button>
+      <button>Login</button>
     </form>
   </div>
 </div>
