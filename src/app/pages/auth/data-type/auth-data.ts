@@ -3,7 +3,7 @@ import {AccountData} from '../../account/data-type/account-data';
 export namespace Auth {
   import Account = AccountData.Account;
   export type BodyLogin = {
-    userName: string,
+    username: string,
     password: string,
   }
 
@@ -14,7 +14,7 @@ export namespace Auth {
   export type AuthReset = {
     password: string,
     forgotCode: string,
-    userName: string,
+    username: string,
   }
   export type ResponseLogin = {
     token: string,

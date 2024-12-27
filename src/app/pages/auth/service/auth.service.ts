@@ -7,13 +7,13 @@ import {Auth} from '../data-type/auth-data';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth'; // URL da sua API de autenticação
+  private apiUrl = 'http://192.168.0.130:3100/'; // URL da sua API de autenticação
 
-  constructor() {
+  constructor(protected httpClient: HttpClient) {
   }
 
   login(body: Auth.BodyLogin) {
-    // return this.http.post(`${this.apiUrl}/login`, body);
+    return this.httpClient.post(this.apiUrl+ 'login', body, {})
   }
 
   logout(): void {
@@ -22,10 +22,13 @@ export class AuthService {
   }
 
   forgot(body: Auth.BodyForgot) {
+    return this.httpClient.post(this.apiUrl+ 'auth/forgot/password', body, {})
+
 
   }
 
   reset(body: Auth.AuthReset) {
+    return this.httpClient.post(this.apiUrl+ 'auth/guest/reset-password', body, {})
 
   }
 

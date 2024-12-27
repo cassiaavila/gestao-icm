@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
+import {Auth} from '../data-type/auth-data';
 
 
 interface SignupObj {
-  userName: string,
+  username: string,
   email: string,
   password: string,
 }
@@ -19,14 +20,13 @@ export class LoginRegisterComponent implements OnInit {
   signUpUsers: any[] = [];
 
   signupObj: any = {
-    userName: '',
+    username: '',
     email: '',
     password: '',
 
   };
-  loginObj: any = {
-    userName: '',
-    email: '',
+  loginObj: Auth.BodyLogin = {
+    username: '',
     password: '',
 
   }
@@ -43,7 +43,7 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onSignUp() {
-    debugger
+    // debugger
     if (!this.validation(this.signupObj)) {
       return;
     }
@@ -51,27 +51,26 @@ export class LoginRegisterComponent implements OnInit {
     localStorage.setItem('signUpUsers', JSON.stringify(this.signUpUsers));
     console.log(this.signupObj);
     this.signupObj = {
-      userName: '',
+      username: '',
       email: '',
       password: '',
     };
 
   }
 
-  onLogin() {
-    const isUserExist = this.signUpUsers.find(
-      m => m.email === this.loginObj.email && m.password === this.loginObj.password
-    );
-    if (isUserExist != undefined) {
-      alert('User Login Successfully');
-    } else {
-      alert('Wrong credentials.');
+  async onLogin() {
+    try {
+      const response = await this.authService.login(this.loginObj).toPromise();
+      console.log('Response: ', response);
+    } catch (e:any) {
+      console.error('Erro ao tentar fazer login: ', e);
+      alert(e.error.message);
     }
   }
 
   validation(data: SignupObj): boolean {
-    if (!data.userName || data.userName.trim().length < 1) {
-      alert('userName cannot be empty.');
+    if (!data.username || data.username.trim().length < 1) {
+      alert('username cannot be empty.');
       return false;
     }
     if (!data.email || data.email.trim().length < 1) {
