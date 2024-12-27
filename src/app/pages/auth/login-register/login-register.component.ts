@@ -11,10 +11,10 @@ interface SignupObj {
 @Component({
   selector: 'app-login',
   standalone: false,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'] // Corrigido para styleUrls
+  templateUrl: './login-register.component.html',
+  styleUrls: ['./login-register.component.scss'] // Corrigido para styleUrls
 })
-export class LoginComponent implements OnInit {
+export class LoginRegisterComponent implements OnInit {
 
   signUpUsers: any[] = [];
 

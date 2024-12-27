@@ -88,3 +88,15 @@ button:hover{
 #chk:checked ~ .signup label{
   transform: scale(.6);
 }
+
+.forget-a {
+  width: 60%;
+  height: 20px;
+  justify-content: start;
+  display: flex;
+  margin: 20px auto;
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}

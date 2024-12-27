@@ -3,17 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/auth/login/login.component';
+import { LoginRegisterComponent } from './pages/auth/login-register/login-register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AccountComponent } from './pages/account/account.component';
 import {NgClass} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import {ForgotPasswordResetComponent} from './pages/auth/forgot-password-reset/forgot-password-reset.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
-    LoginComponent
+    LoginRegisterComponent,
+    ForgotPasswordResetComponent
   ],
   imports: [
     BrowserModule,
