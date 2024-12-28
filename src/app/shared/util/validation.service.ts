@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-interface validation {
+interface validationService {
   username?: string,
   password?: string,
 }
@@ -9,7 +9,7 @@ interface validation {
   providedIn: 'root',
 })
 export class Validation {
-  public validate (data: validation): boolean {
+  public validate (data: validationService): boolean {
     if(data.username || data.username === ''){
       if (data?.username.trim().length < 1) {
         alert('username cannot be empty.');
