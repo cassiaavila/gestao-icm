@@ -1,45 +1,45 @@
+import {Injectable} from '@angular/core';
 
 interface validation {
   username?: string,
-  email?: string,
   password?: string,
 }
 
-function validation(data: validation): boolean {
-  let result = true
-  if(data.username){
-    if (data?.username.trim().length < 1) {
-      alert('username cannot be empty.');
-      result = false
+@Injectable({
+  providedIn: 'root',
+})
+export class Validation {
+  public validate (data: validation): boolean {
+    if(data.username || data.username === ''){
+      if (data?.username.trim().length < 1) {
+        alert('username cannot be empty.');
+        return false
+      }
+      if (!data?.username.includes('@')) {
+        alert('username cannot be invalid.');
+        return false
+      }
+      const username = data?.username.split('@');
+      if (username[0].length < 1 || username[1].length < 1 || !username[1].includes('.com')) {
+        alert('username cannot be invalid.');
+        return false
+      }
+
+    }
+    if(data.password || data.password === ''){
+      console.log('password')
+      console.log(data)
+      if (data?.password.trim().length < 1) {
+        alert('password cannot be empty.');
+        return false
+      }
+      if (data?.password.trim().length < 8) {
+        alert('password must have at least 8 characters long.');
+        return false
+      }
     }
 
-  }
-  if(data.email){
-    if (data?.email.trim().length < 1 || data.email === '') {
-      alert('email cannot be empty.');
-      result = false
-    }
-    if (!data?.email.includes('@')) {
-      alert('email cannot be invalid.');
-      result = false
-    }
-    const email = data?.email.split('@');
-    if (email[0].length < 1 || email[1].length < 1 || !email[1].includes('.com')) {
-      alert('email cannot be invalid.');
-      result = false
-    }
-
-  }
-  if(data.password){
-    if (data?.password.trim().length < 1) {
-      alert('password cannot be empty.');
-      result = false
-    }
-    if (data?.password.trim().length < 8) {
-      alert('password must have at least 8 characters long.');
-      result = false
-    }
+    return true
   }
 
-  return result;
 }
