@@ -11,8 +11,7 @@
   <div class="signup">
     <form (ngSubmit)="onSignUp()">
       <label for="chk" aria-hidden="true">Sign up</label>
-      <input type="text" name="txt" placeholder="User name" [(ngModel)]="signupObj.username" required/>
-      <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.email" required/>
+      <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.username" required/>
       <input type="password" name="pswd" placeholder="Password" [(ngModel)]="signupObj.password" required/>
       <button>Sign up</button>
     </form>
@@ -20,7 +19,7 @@
   <div class="login">
     <form (ngSubmit)="onLogin()">
       <label for="chk" aria-hidden="true">Login</label>
-      <input type="email" name="user name" placeholder="User name" [(ngModel)]="loginObj.username">
+      <input type="email" name="username" placeholder="Email" [(ngModel)]="loginObj.username">
       <input type="password" name="pssword" placeholder="Password" [(ngModel)]="loginObj.password">
       <button>Login</button>
     </form>

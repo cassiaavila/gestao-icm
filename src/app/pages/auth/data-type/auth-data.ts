@@ -6,7 +6,11 @@ export namespace Auth {
     username: string,
     password: string,
   }
+  export type BodyRegister = {
+    username: string,
+    password: string,
 
+  }
   export type BodyForgot = {
     email: string,
   }

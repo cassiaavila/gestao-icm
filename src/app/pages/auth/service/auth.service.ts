@@ -7,13 +7,17 @@ import {Auth} from '../data-type/auth-data';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://192.168.0.130:3100/'; // URL da sua API de autenticação
+  private apiUrl = 'http://192.168.3.30:3100/'; // URL da sua API de autenticação
 
   constructor(protected httpClient: HttpClient) {
   }
 
   login(body: Auth.BodyLogin) {
-    return this.httpClient.post(this.apiUrl+ 'login', body, {})
+  return this.httpClient.post(this.apiUrl+ 'login', body, {})
+
+  }
+  signup(body: Auth.BodyRegister) {
+    return this.httpClient.post(this.apiUrl+ 'register', body, {})
   }
 
   logout(): void {
