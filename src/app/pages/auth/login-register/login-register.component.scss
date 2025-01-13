@@ -119,5 +119,23 @@ button:hover{
 .password-container i:hover {
   color: #333;
 }
+.password-container-signup{
+  position: relative;
+  margin: 20px auto;
+}
+.password-container-signup i{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  padding-right: 20%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.password-container-signup i:hover {
+  color: #333;
+
+}
 
 
