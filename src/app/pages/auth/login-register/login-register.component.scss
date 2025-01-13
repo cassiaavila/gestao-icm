@@ -20,7 +20,7 @@ body{
 #chk{
   display: none;
 }
-.login{
+.login, .signup{
   position: relative;
   width:100%;
   height: 100%;
@@ -102,3 +102,22 @@ button:hover{
   outline: none;
   border-radius: 5px;
 }
+.password-container {
+  position: relative;
+  margin: 20px auto;
+}
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  padding-right: 20%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+.password-container i:hover {
+  color: #333;
+}
+
+
