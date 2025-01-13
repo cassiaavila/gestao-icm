@@ -11,7 +11,7 @@ import {Auth} from '../data-type/auth-data';
   styleUrls: ['./login-register.component.scss'] // Corrigido para styleUrls
 })
 export class LoginRegisterComponent implements OnInit {
-
+  showPassword: boolean = false;
   signupObj: Auth.BodyRegister = {
     username: '',
     password: '',
@@ -63,6 +63,9 @@ export class LoginRegisterComponent implements OnInit {
       console.error('Erro ao tentar fazer login: ', e);
       alert(e.error.message);
     }
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   validation(data: Auth.BodyRegister): boolean {
