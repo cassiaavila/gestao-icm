@@ -1,0 +1,75 @@
+<div class="row mt-2">
+    <div class="col-sm-12">
+      <div class="card table-card">
+        <div class="card-header">
+          <div class="d-flex align-items-center justify-content-between">
+            <h3>Lista de Notas</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: flex-end; width: 100%;">
+            <input
+              type="search"
+              [(ngModel)]="filterName"
+              (input)="filterHomes()"
+              class="form-control"
+              style="width: 300px;"
+              placeholder="Filtrar por Remetente ou Destinatário"
+            />
+          </div>
+          <br/>
+          <p-table
+            #dt
+            [value]="homes"
+            [loading]="loading"
+            styleClass="p-datatable-gridlines"
+            [paginator]="true"
+            [rows]="10"
+            [first]="first"
+            [rowsPerPageOptions]="[5, 10, 20, 50]"
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+            [tableStyle]="{ 'min-width': '60rem' }"
+            [showCurrentPageReport]="true"
+            (onPage)="pageChange($event)">
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 250px;">Remetente</th>
+                <th style="width: 250px;">Destinátario</th>
+                <th style="width: 150px;">Data Faturamento</th>
+                <th style="width: 150px;">Status</th>
+                <th style="width: 150px;">Tipo</th>
+                <th style="width: 80px;text-align: center;">Ação</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-homes>
+              <tr>
+                <td>{{ homes?.sourceCompany?.businessName || this.noDataHome}}</td>
+                <td>{{ homes?.destinationPerson?.businessName || this.noDataHome}}</td>
+                <td>{{ this.convertDate(homes?.invoicingAt) }}</td>
+                <td>{{ homes?.status }}</td>
+                <td style="text-align: center;">
+                  <div>
+                    <button
+                      type="button"
+                      class="btn btn-icon btn-outline-danger d-inline-flex m-1 btn-list"
+                      (click)="openRemove(homes.id)"
+                      title="Excluir"
+                    >
+                      <i class="ti ti-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="7" style="text-align: center">Não possui nenhum registro.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </div>
+

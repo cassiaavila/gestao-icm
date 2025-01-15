@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Auth} from '../data-type/auth-data';
+import {MessageService} from 'primeng/api';
 
 
 
@@ -15,15 +16,16 @@ export class LoginRegisterComponent implements OnInit {
   signupObj: Auth.BodyRegister = {
     username: '',
     password: '',
-
   };
   loginObj: Auth.BodyLogin = {
     username: '',
     password: '',
-
   }
+  error: string | any
+  message: string | any
  //construtor para injetar AuthService nesta classe
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private messageService: MessageService) {
+
   }
 
   ngOnInit(): void {
@@ -58,10 +60,13 @@ export class LoginRegisterComponent implements OnInit {
         }
         localStorage.setItem('account', JSON.stringify(account));
       }
+      await this.messageService.add({ severity: 'success', summary: 'sucesso', detail: 'acesso liberado' });
 
     } catch (e:any) {
-      console.error('Erro ao tentar fazer login: ', e);
-      alert(e.error.message);
+      //console.error('Erro ao tentar fazer login: ', e);
+      //alert(e.error.message);
+
+      await this.messageService.add({ severity: 'error', summary: 'sumário autenticação', detail: 'falha' });
     }
   }
   toggleShowPassword() {

@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginRegisterComponent} from './pages/auth/login-register/login-register.component';
 import {ForgotPasswordResetComponent} from './pages/auth/forgot-password-reset/forgot-password-reset.component';
+import {HomeComponent} from './pages/home/home.component';
+
 
 const routes: Routes = [
   {
@@ -21,11 +23,13 @@ const routes: Routes = [
   {
     path: 'forgot',
     component: ForgotPasswordResetComponent,
-  }
+  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

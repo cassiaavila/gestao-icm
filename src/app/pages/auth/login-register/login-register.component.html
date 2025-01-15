@@ -38,7 +38,7 @@
     <form (ngSubmit)="onSignUp()">
       <label for="chk" aria-hidden="true">Sign up</label>
       <input type="email" name="email" placeholder="Email" [(ngModel)]="signupObj.username" required="true"/>
-      <div class ="password-container-signup">
+      <div class ="password-container">
         <input
         [type]="showPassword ? 'text' : 'password'"
         name="password"

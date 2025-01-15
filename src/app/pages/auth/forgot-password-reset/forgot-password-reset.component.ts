@@ -11,6 +11,7 @@ import {Auth} from '../data-type/auth-data';
   styleUrls: ['./forgot-password-reset.component.scss'] // Corrigido para styleUrls
 })
 export class ForgotPasswordResetComponent implements OnInit {
+  showPassword: boolean = false;
 
 
   resetObj: Auth.AuthReset = {
@@ -49,6 +50,9 @@ export class ForgotPasswordResetComponent implements OnInit {
       console.error('Erro ao tentar recuperar senha: ', e);
       alert(e.error.message);
     }
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
 
