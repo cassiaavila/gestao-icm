@@ -1,8 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../service/auth.service';
-import {Auth} from '../data-type/auth-data';
-
-
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from '../service/auth.service'
+import { Auth } from '../data-type/auth-data'
 
 @Component({
   selector: 'app-login',
@@ -11,49 +9,43 @@ import {Auth} from '../data-type/auth-data';
   styleUrls: ['./forgot-password-reset.component.scss'] // Corrigido para styleUrls
 })
 export class ForgotPasswordResetComponent implements OnInit {
-  showPassword: boolean = false;
-
+  showPassword: boolean = false
 
   resetObj: Auth.AuthReset = {
     password: '',
     username: '',
-    forgotCode: '',
-  };
+    forgotCode: ''
+  }
 
   forgotObj: Auth.BodyForgot = {
-    email: '',
+    email: ''
   }
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   async resetPassword() {
-    console.log(this.resetObj);
+    console.log(this.resetObj)
     try {
-      const response = await this.authService.reset(this.resetObj).toPromise();
-      console.log('Response: ', response);
-    } catch (e:any) {
-      console.error('Erro ao tentar resetar senha: ', e);
-      alert(e.error.message);
+      const response = await this.authService.reset(this.resetObj).toPromise()
+      console.log('Response: ', response)
+    } catch (e: any) {
+      console.error('Erro ao tentar resetar senha: ', e)
+      alert(e.error.message)
     }
   }
 
   async forgotPassword() {
-       try {
-      const response = await this.authService.forgot(this.forgotObj).toPromise();
-      console.log('Response: ', response);
-    } catch (e:any) {
-      console.error('Erro ao tentar recuperar senha: ', e);
-      alert(e.error.message);
+    try {
+      const response = await this.authService.forgot(this.forgotObj).toPromise()
+      console.log('Response: ', response)
+    } catch (e: any) {
+      console.error('Erro ao tentar recuperar senha: ', e)
+      alert(e.error.message)
     }
   }
   toggleShowPassword() {
-    this.showPassword = !this.showPassword;
+    this.showPassword = !this.showPassword
   }
-
-
 }

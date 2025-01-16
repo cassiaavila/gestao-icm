@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-account',
   standalone: false,
-  
+
   templateUrl: './account.component.html',
   styleUrl: './account.component.scss'
 })
-export class AccountComponent {
-
-}
+export class AccountComponent {}

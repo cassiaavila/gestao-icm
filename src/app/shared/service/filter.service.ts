@@ -1,9 +1,7 @@
 //import { API } from '@/app/shared/service/client-api.service';
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-import { BehaviorSubject, Subject } from "rxjs";
-
-
+import { BehaviorSubject, Subject } from 'rxjs'
 
 export interface FilterList {
   data: any
@@ -21,13 +19,10 @@ export interface FilterSelect {
   providedIn: 'root'
 })
 export class FilterService {
-  public showModal = new Subject<string>();
-
+  public showModal = new Subject<string>()
 
   resultList: BehaviorSubject<any> = new BehaviorSubject<any>({})
-  constructor(
-    //private request: API,
-  ) { }
+  constructor() {} //private request: API,
 
   setService(newValue: FilterList) {
     this.resultList.next(newValue)
@@ -39,14 +34,14 @@ export class FilterService {
 
   async find_service(first: any, rows: any, name = '', search = '') {
     try {
-     // const result = await this.request.API().get<FilterList>(`/${name}?offset=${first}&limit=${rows}&search=${search}`);
+      // const result = await this.request.API().get<FilterList>(`/${name}?offset=${first}&limit=${rows}&search=${search}`);
       //if (result.status === HttpStatusCode.Ok) {
-     //   this.setService(result?.data?.data)
-     // } else {
-        throw new Error()
+      //   this.setService(result?.data?.data)
+      // } else {
+      throw new Error()
       //}
     } catch (e) {
-      console.error('Error:', e);
+      console.error('Error:', e)
       throw e
     }
   }

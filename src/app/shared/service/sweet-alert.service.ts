@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import Swal, {SweetAlertIcon} from 'sweetalert2';
+import { Injectable } from '@angular/core'
+import Swal, { SweetAlertIcon } from 'sweetalert2'
 
 export interface AlertOptions {
-  title: string;
-  text: string;
-  icon: SweetAlertIcon;
-  cancellText: string;
-  confirmText: string;
+  title: string
+  text: string
+  icon: SweetAlertIcon
+  cancellText: string
+  confirmText: string
 }
-export enum AlertIcon  {
+export enum AlertIcon {
   SUCCESS = 'success',
   ERROR = 'error',
   WARNING = 'warning',
@@ -19,11 +19,9 @@ export enum AlertIcon  {
   providedIn: 'root'
 })
 export class SweetAlertService {
-
-  timerInterval: any;
-  textContent!: number | undefined;
-  constructor() { }
-
+  timerInterval: any
+  textContent!: number | undefined
+  constructor() {}
 
   async confirmAlert(config: AlertOptions): Promise<any> {
     return Swal.fire({
@@ -32,6 +30,6 @@ export class SweetAlertService {
       icon: config.icon,
       showCloseButton: true,
       showCancelButton: true
-    });
+    })
   }
 }
