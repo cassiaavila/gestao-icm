@@ -3,8 +3,6 @@ import {AuthService} from '../service/auth.service';
 import {Auth} from '../data-type/auth-data';
 import {MessageService} from 'primeng/api';
 
-
-
 @Component({
   selector: 'app-login',
   standalone: false,

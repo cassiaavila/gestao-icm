@@ -11,8 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ForgotPasswordResetComponent} from './pages/auth/forgot-password-reset/forgot-password-reset.component';
 import { HomeComponent } from './pages/home/home.component';
 import {PaginatorModule} from 'primeng/paginator';
-import {SharedModule} from 'primeng/api';
+import {MessageService, SharedModule} from 'primeng/api';
 import {TableModule} from 'primeng/table';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,12 @@ import {TableModule} from 'primeng/table';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
