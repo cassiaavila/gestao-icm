@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../service/auth.service'
 import { Auth } from '../data-type/auth-data'
 import { MessageService } from 'primeng/api'
+import {SweetAlertService} from '../../../shared/service/sweet-alert.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,8 @@ export class LoginRegisterComponent implements OnInit {
   //construtor para injetar AuthService nesta classe
   constructor(
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
@@ -57,16 +60,17 @@ export class LoginRegisterComponent implements OnInit {
         }
         localStorage.setItem('account', JSON.stringify(account))
       }
-      await this.messageService.add({
+      this.messageService.add({
         severity: 'success',
         summary: 'sucesso',
         detail: 'acesso liberado'
       })
+      this.router.navigate(['/home'])
     } catch (e: any) {
       //console.error('Erro ao tentar fazer login: ', e);
-      //alert(e.error.message);
+     // alert(e.error.message);
 
-      await this.messageService.add({
+      this.messageService.add({
         severity: 'error',
         summary: 'sumário autenticação',
         detail: 'falha'
@@ -79,11 +83,19 @@ export class LoginRegisterComponent implements OnInit {
 
   validation(data: Auth.BodyRegister): boolean {
     if (!data.username || data.username.trim().length < 1) {
-      alert('username cannot be empty.')
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Form Error',
+        detail: 'Username cannot be empty.'
+      })
       return false
     }
     if (!data.username.includes('@')) {
-      alert('username cannot be invalid.')
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Form Error',
+        detail: 'Username cannot  be invalid.'
+      })
       return false
     }
     const username = data.username.split('@')
