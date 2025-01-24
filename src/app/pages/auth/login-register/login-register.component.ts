@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { AuthService } from '../service/auth.service'
-import { Auth } from '../data-type/auth-data'
-import { MessageService } from 'primeng/api'
-import {SweetAlertService} from '../../../shared/service/sweet-alert.service';
+import {Component, OnInit} from '@angular/core'
+import {AuthService} from '../service/auth.service'
+import {Auth} from '../data-type/auth-data'
 import {Router} from '@angular/router';
 import {NotificationService} from '../../../shared/service/notification.service';
 
@@ -10,7 +8,7 @@ import {NotificationService} from '../../../shared/service/notification.service'
   selector: 'app-login',
   standalone: false,
   templateUrl: './login-register.component.html',
-  styleUrls: ['./login-register.component.scss'] // Corrigido para styleUrls
+  styleUrls: ['./login-register.component.scss']
 })
 export class LoginRegisterComponent implements OnInit {
   showPassword: boolean = false
@@ -24,14 +22,17 @@ export class LoginRegisterComponent implements OnInit {
   }
   error: string | any
   message: string | any
+
   //construtor para injetar AuthService nesta classe
   constructor(
     private authService: AuthService,
     private router: Router,
     private notificationService: NotificationService,
-  ) {}
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   async onSignUp() {
     // debugger
@@ -61,12 +62,14 @@ export class LoginRegisterComponent implements OnInit {
         }
         localStorage.setItem('account', JSON.stringify(account))
       }
-     this.notificationService.authSuccess('Logged in successfully!')
-      this.router.navigate(['/home'])
+      this.notificationService.authSuccess('Logged in successfully!')
+      await this.router.navigate(['/home'])
     } catch (e: any) {
+      console.error('Erro ao tentar registrar-se', e)
       this.notificationService.authError('Username or password incorrect!')
     }
   }
+
   toggleShowPassword() {
     this.showPassword = !this.showPassword
   }
