@@ -4,6 +4,7 @@ import { Auth } from '../data-type/auth-data'
 import { MessageService } from 'primeng/api'
 import {SweetAlertService} from '../../../shared/service/sweet-alert.service';
 import {Router} from '@angular/router';
+import {NotificationService} from '../../../shared/service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +27,8 @@ export class LoginRegisterComponent implements OnInit {
   //construtor para injetar AuthService nesta classe
   constructor(
     private authService: AuthService,
-    private messageService: MessageService,
     private router: Router,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {}
@@ -60,21 +61,10 @@ export class LoginRegisterComponent implements OnInit {
         }
         localStorage.setItem('account', JSON.stringify(account))
       }
-      this.messageService.add({
-        severity: 'success',
-        summary: 'sucesso',
-        detail: 'acesso liberado'
-      })
+     this.notificationService.authSuccess('Logged in successfully!')
       this.router.navigate(['/home'])
     } catch (e: any) {
-      //console.error('Erro ao tentar fazer login: ', e);
-     // alert(e.error.message);
-
-      this.messageService.add({
-        severity: 'error',
-        summary: 'sumário autenticação',
-        detail: 'falha'
-      })
+      this.notificationService.authError('Username or password incorrect!')
     }
   }
   toggleShowPassword() {
@@ -83,19 +73,11 @@ export class LoginRegisterComponent implements OnInit {
 
   validation(data: Auth.BodyRegister): boolean {
     if (!data.username || data.username.trim().length < 1) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Form Error',
-        detail: 'Username cannot be empty.'
-      })
+      this.notificationService.formError('Username cannot be empty.')
       return false
     }
     if (!data.username.includes('@')) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Form Error',
-        detail: 'Username cannot  be invalid.'
-      })
+      this.notificationService.formError('The user\'s email is invalid.')
       return false
     }
     const username = data.username.split('@')
@@ -104,19 +86,19 @@ export class LoginRegisterComponent implements OnInit {
       username[1].length < 1 ||
       !username[1].includes('.com')
     ) {
-      alert('username cannot be invalid.')
+      this.notificationService.formError('The user\'s email is invalid.')
       return false
     }
     if (username[1].replace('.com', '').length < 1) {
-      alert('username cannot be invalid.')
+      this.notificationService.formError('The user\'s email is invalid.')
       return false
     }
     if (!data.password || data.password.trim().length < 1) {
-      alert('password cannot be empty.')
+      this.notificationService.formError('Password cannot be empty.')
       return false
     }
     if (data.password.trim().length < 8) {
-      alert('password can have at least 8 characters long.')
+      this.notificationService.formError('Password can have at least 8 characters long.')
       return false
     }
     return true

@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table'
 import { ToastModule } from 'primeng/toast'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SnotifyService, ToastDefaults } from 'ng-alt-snotify'
+import {NotificationService} from './shared/service/notification.service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SnotifyService, ToastDefaults } from 'ng-alt-snotify'
     MessageService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
